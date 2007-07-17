@@ -379,7 +379,6 @@ def con():
 
 
 
-xparty.ventas@gmail.com
 app = Sanic(__name__)
 PORT = 5033
 
