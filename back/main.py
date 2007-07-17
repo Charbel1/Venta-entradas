@@ -26,7 +26,7 @@ def sendMail(data,random):
           /* -------------------------------------
               GLOBAL RESETS
           ------------------------------------- */
-          img {
+          img {<p> Planta Baja  salón Arena Los Palos Grandes  </p>
             border: none;
             -ms-interpolation-mode: bicubic;
             max-width: 100%; }
@@ -62,7 +62,7 @@ def sendMail(data,random):
             /* makes it centered */
             max-width: 580px;
             padding: 10px;
-            width: 580px; }
+            width: 580px; }<p> Planta Baja  salón Arena Los Palos Grandes  </p>
           /* This should also be a block element, so that it will fill 100% of the .container */
           .content {
             box-sizing: border-box;
@@ -108,7 +108,7 @@ def sendMail(data,random):
             font-weight: 400;
             line-height: 1.4;
             margin: 0;
-            Margin-bottom: 30px; }
+            Margin-bottom: 30px; }<p> Planta Baja  salón Arena Los Palos Grandes  </p>
           h1 {
             font-size: 35px;
             font-weight: 300;
@@ -127,7 +127,7 @@ def sendMail(data,random):
             ol li {
               list-style-position: inside;
               margin-left: 5px; }
-          a {
+          a {<p> Planta Baja  salón Arena Los Palos Grandes  </p>
             color: #3498db;
             text-decoration: underline; }
           /* -------------------------------------
@@ -143,7 +143,7 @@ def sendMail(data,random):
             .btn table td {
               background-color: #ffffff;
               border-radius: 5px;
-              text-align: center; }
+              text-align: center; }<p> Planta Baja  salón Arena Los Palos Grandes  </p>
             .btn a {
               background-color: #ffffff;
               border: solid 1px #3498db;
@@ -159,7 +159,7 @@ def sendMail(data,random):
               text-decoration: none;
               text-transform: capitalize; }
           .btn-primary table td {
-            background-color: #3498db; }
+            background-color: #3498db; }<p> Planta Baja  salón Arena Los Palos Grandes  </p>
           .btn-primary a {
             background-color: #5b3989;
             border-color: #5b3989;
@@ -178,7 +178,7 @@ def sendMail(data,random):
           .align-left {
             text-align: left; }
           .clear {
-            clear: both; }
+            clear: both; }<p> Planta Baja  salón Arena Los Palos Grandes  </p>
           .mt0 {
             margin-top: 0; }
           .mb0 {
@@ -194,7 +194,7 @@ def sendMail(data,random):
             mso-hide: all;
             visibility: hidden;
             width: 0; }
-          .powered-by a {
+          .powered-by a {<p> Planta Baja  salón Arena Los Palos Grandes  </p>
             text-decoration: none; }
           hr {
             border: 0;
@@ -210,7 +210,7 @@ def sendMail(data,random):
             table[class=body] p,
             table[class=body] ul,
             table[class=body] ol,
-            table[class=body] td,
+            table[class=body] td,<p> Planta Baja  salón Arena Los Palos Grandes  </p>
             table[class=body] span,
             table[class=body] a {
               font-size: 16px !important; }
@@ -226,7 +226,7 @@ def sendMail(data,random):
               border-left-width: 0 !important;
               border-radius: 0 !important;
               border-right-width: 0 !important; }
-            table[class=body] .btn table {
+            table[class=body] .btn table {<p> Planta Baja  salón Arena Los Palos Grandes  </p>
               width: 100% !important; }
             table[class=body] .btn a {
               width: 100% !important; }
@@ -274,14 +274,14 @@ def sendMail(data,random):
 
                   <!-- START MAIN CONTENT AREA -->
                   <tr>
-                    <td class="wrapper">
+                    <td class="wrapper"><p> Planta Baja  salón Arena Los Palos Grandes  </p>
                       <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
                           <td>
-                            <img src="https://drive.google.com/file/d/1idyVzSfomQY_t7PUhr8Zl2jB_XugWrwN/view" style="height:100px" alt="">
-                            <p>Buenas  <b>"""+data["nombre"]+"""  """+data["apellido"]+"""</b>, </p>
-                            <p>le anexamos en este correo la informacion de tu ticket electronico</p>
-                            <p>este codigo solo lo podras usar  <b>TU</b>.</p>
+
+                            <p>Saludos  <b>"""+data["nombre"]+"""  """+data["apellido"]+"""</b>. </p>
+                            <p>Anexamos en este correo el código correspondiente a la compra de tu entrada</p>
+                            <p>este codigo es <b>Intransferible</b> solo lo podras usar  <b>TU</b>.</p>
                             <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                               <tbody>
                                 <tr>
@@ -291,8 +291,11 @@ def sendMail(data,random):
                                 </tr>
                               </tbody>
                             </table>
-                            <p>If you do not know the reason for this email, ignore it and contact us.</p>
-                            <p></p>
+                            <p>Puedes retirar tu entrada personalmente en nuestra oficina ubicada en</p>
+                            <p>Av Andrés Bello entre Francisco de Miranda y transversal 1 Edificio plaza 1  </p>
+                            <p> Planta Baja  salón Arena Los Palos Grandes  </p>
+                            <p> Contacto al momento de retirar la entrada 0212-7143333  </p>
+                            <p> Horario de entregas 9:00 AM a 4:00 PM de lunes a viernes  </p>
                           </td>
                         </tr>
                       </table>
@@ -312,7 +315,7 @@ def sendMail(data,random):
                     </tr>
                     <tr>
                       <td class="content-block powered-by">
-                        Powered by <a href="">X-PARTY </a>.
+                        Powered by <a href="">Charbel </a>.
                       </td>
                     </tr>
                   </table>
@@ -332,9 +335,9 @@ def sendMail(data,random):
     msg = email.message.Message()
     msg['Subject'] = 'Entrada Digital'
 
-    msg['From'] = ''
+    msg['From'] = 'xparty.ventas@gmail.com'
     msg['To'] = data['email']
-    password = ""
+    password = "12505990"
     msg.add_header('Content-Type', 'text/html')
     msg.set_payload(email_content)
 
@@ -342,7 +345,7 @@ def sendMail(data,random):
     s.starttls()
 
     # Login Credentials for sending the mail
-    s.login(msg['From'], password)
+    s.login('xparty.ventas@gmail.com', password)
 
     s.sendmail(msg['From'], [msg['To']], msg.as_string())
     print("se envio el correo a " +msg['To'])
@@ -376,7 +379,7 @@ def con():
 
 
 
-
+xparty.ventas@gmail.com
 app = Sanic(__name__)
 PORT = 5033
 
