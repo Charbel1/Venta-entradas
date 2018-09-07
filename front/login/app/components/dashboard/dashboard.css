@@ -1,0 +1,7 @@
+.btn{
+  margin-top: 1%;
+  border-radius: 75px 75px 75px 75px;
+-moz-border-radius: 75px 75px 75px 75px;
+-webkit-border-radius: 75px 75px 75px 75px;
+border: 0px solid #000000;
+}

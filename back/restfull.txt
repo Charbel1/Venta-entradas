@@ -1,0 +1,74 @@
+registro
+
+url = ip/wango/registro
+
+ ejemplo json
+ {"nombre":"charbel",
+	"apellido":"nachar",
+	"cedula":"23631508",
+	"correo":"charbelnacharn@gmail.com",
+	"fecha": "30/11/1993"
+ }
+
+respuesta
+{"data": valor random, "error": "0"}
+
+
+error
+
+{"data": "", "error": "1"}
+error al insertar dato en la base de datos
+
+{"data": "", "error": "2"}
+cedula ya registrada
+
+{"data": "", "error": "3"}
+error al enviar correo , pero si guardo el usuario
+
+Busqueda por cédula
+url = ip/wango/buscarC
+ {
+	"cedula":"23631508"
+
+ }
+
+
+ respuesta
+
+ {
+	"data": {
+		"nombre": "charbel",
+		"apellido": "nachar",
+		"cedula": 23631508,
+		"codigo": 9538609,
+		"correo": "charbelnacharn@gmail.com",
+		"fecha": 754617600
+	},
+	"error": "0"
+}
+
+error
+
+{	"data": "",	"error": "5"}
+cedula no registrada
+
+
+renviar correo con codigo
+url =ip/wango/renviarC
+
+ {
+	"cedula":"23631508"
+
+ }
+
+ respuesta
+
+ {
+	"data": 'ok'',
+	"error": "0"
+}
+
+error
+
+{	"data": "",	"error": "5"}
+cedula no registrada

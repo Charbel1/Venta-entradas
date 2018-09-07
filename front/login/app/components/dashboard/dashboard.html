@@ -1,0 +1,121 @@
+<!-- insert de los modal -->
+<!-- <div ng-include src="'components/modal/modalShow.html'"></div>
+<div ng-include src="'components/modal/modalEdit.html'"></div>
+<div ng-include src="'components/modal/modalCreatUser.html'"></div>
+
+<div ng-include src="'components/modal/modalModifyUserlog.html'"></div>
+<div ng-include src="'components/modal/modalViewUser.html'"></div>
+<div ng-include src="'components/modal/modalEditUser.html'"></div> -->
+
+
+<header>
+
+
+
+
+</header>
+<div style="margin-top: 10%;">
+
+  <div ng-if="aux == 'main'" style="width: 50%;" class="container">
+
+
+    <div class="input-group">
+      <span style="width: 15%; " class="input-group-addon">nombre</span>
+      <br>
+      <input type="text" class="form-control" ng-model="form.nombre" name="nombre" placeholder="Nombre">
+    </div>
+
+    <div class="input-group">
+      <span style="width: 15%; " class="input-group-addon">apellido</span>
+      <input id="email" type="text" class="form-control" ng-model="form.apellido" name="Apellido" placeholder="Apellido">
+    </div>
+
+    <div class="input-group">
+      <span style="width: 15%; " class="input-group-addon">cedula</span>
+      <input id="email" type="text" class="form-control" ng-model="form.cedula" name="Cedula" placeholder="Cedula">
+    </div>
+
+
+    <div class="input-group">
+      <span style="width: 15%; " class="input-group-addon">correo</span>
+      <input id="email" type="text" class="form-control" ng-model="form.correo" name="email" placeholder="Correo">
+    </div>
+
+    <div ng-if="auxerror" class="h3">
+      {{error}}
+    </div>
+
+    <button class="btn btn-primary" ng-click="cambiar('reenviar')" class="boton" type="submit">Reenviar  Reservacion </button>
+
+    <button class="btn btn-primary" ng-click="enviar()" class="boton" style=" float: right; " type="submit"> Generar  Reservacion</button>
+
+    <button class="btn btn-primary" ng-click="cambiar('buscar')" class="boton" style=" left:50%" type="submit"> Buscar</button>
+
+
+
+  </div>
+
+  <div ng-if="aux == 'reenviar'" style="width: 50%;" class="container">
+
+    <div class="h5">
+      Reenviar Correo
+    </div>
+    <div class="input-group">
+      <input id="email" type="text" class="form-control" ng-model="form.Correo" name="email" placeholder="Correo">
+    </div>
+
+    <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
+
+    <button class="btn btn-primary" ng-click="" class="boton" style=" float: right; " type="submit"> Enviar Correo</button>
+
+
+  </div>
+
+  <div ng-if="aux == 'buscar'" style="width: 50%;" class="container">
+
+    <div class="h5">
+      Cedula
+    </div>
+    <div class="input-group">
+      <input id="email" type="text" class="form-control" ng-model="cedula" name="email" placeholder="Cedula">
+    </div>
+
+    <div ng-if="auxerror" class="h3">
+      {{error}}
+    </div>
+
+
+
+    <div ng-if="si" class="h3">
+      <div class="container">
+
+        <div class="row justify-content-md-center">
+          <span>Nombre: {{data.nombre}}</span>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <span>Apellido: {{data.apellido}}</span>
+        </div>
+        <div class="row justify-content-md-center">
+          <span>Fecha: {{data.fecha}}</span>
+        </div>
+        <div class="row justify-content-md-center">
+          <span>Entregada: {{data.entregado}}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
+
+    <button ng-if="!aux2" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
+    <button ng-if="aux2" class="btn btn-primary" ng-click="aprobar(data.cedula)" class="boton" style=" float: right; " type="submit"> Aprobar</button>
+
+  </div>
+
+
+</div>
+
+
+</div>

@@ -1,0 +1,13 @@
+CREATE TABLE cliente
+(
+  nombre character varying(40) NOT NULL,
+  apellido character varying(40) NOT NULL,
+  cedula integer UNIQUE NOT NULL,
+  codigo integer NOT NULL,
+  correo character varying(40) NOT NULL,
+  fecha date,
+  entregado boolean,
+  CONSTRAINT cliente_pkey PRIMARY KEY (codigo)
+
+)
+
