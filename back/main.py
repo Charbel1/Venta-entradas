@@ -557,6 +557,51 @@ async def get_by_id(request):
         return response.json({"data":"", "error": "No se envío"})
 
 
+@app.route('/wango/reporte',methods=['POST','OPTIONS'])
+@cross_origin(app, automatic_options=True)
+async def get_by_id(request):
+    aux = {}
+    cont = no = 0
+    data = request.json
+    list = []
+    conn = con()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado"
+                       "  FROM cliente ")
+        data = cursor.fetchall()
+        for row in data:
+            aux['nombre'] =row[0]
+            aux['apellido'] = row[1]
+            aux['cedula'] = row[2]
+            aux['codigo'] = row[3]
+            aux['correo'] = row[4]
+            aux['fecha'] = row[5]
+            list.append(aux)
+            if row[6] == True:
+                cont= cont +1
+            else:
+                no= no +1
+
+    except (Exception, psycopg2.Error) as error:
+        print(error)
+
+
+
+    finally:
+        if conn is not None:
+            conn.close()
+        if cursor is not None:
+            cursor.close()
+
+
+    if list is not None:
+
+        return response.json({"data":{"entregada":cont,"no":no}, "error": "0"})
+    else:
+        return response.json({"data":"", "error": "No se envío"})
+
+
 
 
 

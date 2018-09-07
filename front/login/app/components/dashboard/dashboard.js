@@ -41,7 +41,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
       $scope.aux = 'main'
       $scope.aux2 = false
       $scope.auxerror = false
-        $scope.si = false;
+      $scope.si = false;
       $scope.cambio = function() {
 
 
@@ -74,7 +74,33 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
 
 
+      $scope.reporte = function ()
+      {
+        var data = {}
+        $scope.auxerror = false
+        request.post(ip + '/wango/reporte', data, {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          })
+          .then(function(res) {
 
+            console.log(res)
+            if (res.data.error != 0) {
+
+              $scope.auxerror = true
+            //  $scope.error = res.data.error
+            } else {
+
+              $scope.auxerror = true
+                $scope.error = "No Entregadas "+res.data.data.no + " Entregadas "+res.data.data.entregada
+            }
+
+          }, function(errorMsg) {
+            $scope.auxerror = true
+            $scope.error = "Error de conexión"
+
+          });
+
+      }
 
       $scope.cambiar = function(algo) {
         $scope.auxerror = false
