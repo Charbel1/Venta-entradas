@@ -65,12 +65,16 @@
       Reenviar Correo
     </div>
     <div class="input-group">
-      <input id="email" type="text" class="form-control" ng-model="form.Correo" name="email" placeholder="Correo">
+      <input id="email" type="text" class="form-control" ng-model="vaina" name="email" placeholder="cedula">
     </div>
+    <div ng-if="auxerror" class="h3">
+      {{error}}
+    </div>
+
 
     <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
 
-    <button class="btn btn-primary" ng-click="" class="boton" style=" float: right; " type="submit"> Enviar Correo</button>
+    <button class="btn btn-primary" ng-click="renviarC(vaina)" class="boton" style=" float: right; " type="submit"> Enviar Correo</button>
 
 
   </div>

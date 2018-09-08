@@ -74,6 +74,39 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
 
 
+
+$scope.renviarC = function (v)
+{
+  var data = {}
+  data.cedula = v
+console.log(data)
+  $scope.auxerror = false
+  request.post(ip + '/wango/renviarC', data, {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    })
+    .then(function(res) {
+
+      console.log(res)
+      if (res.data.error != 0) {
+
+        $scope.auxerror = true
+       $scope.error = res.data.error
+      } else {
+
+        $scope.auxerror = true
+          $scope.error ="Ok"
+
+    }
+  }, function(errorMsg) {
+      $scope.auxerror = true
+      $scope.error = "Error de conexión"
+
+    });
+
+}
+
+
+
       $scope.reporte = function ()
       {
         var data = {}
