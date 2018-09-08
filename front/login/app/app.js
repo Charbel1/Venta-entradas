@@ -13,7 +13,7 @@ angular.module('app', [
   ])
 
 
-  .constant('ip', 'http://localhost:5033')
+  .constant('ip', 'http://192.168.1.69:5033')
   .factory('request', ['$http', '$q','$rootScope', function($http, $q,$rootScope) {
     return {
       get: function(url) {
