@@ -551,10 +551,14 @@ async def get_by_id(request):
 
 
     if data is not None:
-        sendMail(aux,aux['codigo'])
-        return response.json({"data": "ok", "error": "0"})
+
+        try:
+            sendMail(data,random)
+            return response.json({"data":"","error":"0"})
+        except Exception as e:
+           return response.json({"data":"","error":"No se envío "})
     else:
-        return response.json({"data":"", "error": "No se envío"})
+        return response.json({"data":"", "error": "No registrado"})
 
 
 @app.route('/wango/reporte',methods=['POST','OPTIONS'])
