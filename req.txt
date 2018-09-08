@@ -1,0 +1,4 @@
+sanic
+psycopg2
+aiohttp
+sanic_cors
