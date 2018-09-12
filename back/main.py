@@ -396,8 +396,8 @@ async def get_by_id(request):
 
         int(data['cedula'])
         fecha =str(datetime.now())
-        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado ,codigoe)"
-                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'');")
+        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado )"
+                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false);")
 
         conn.commit()
 
@@ -484,14 +484,21 @@ async def get_by_id(request):
     conn = con()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado, codigoE"
                        "  FROM cliente where cedula = "+str(data['cedula']))
         info = cursor.fetchone()
 
-        if info[6] == False:
+        if info[6] == False  :
             cambio = True
-            sql = "UPDATE cliente  SET entregado = True, codigoe ='"+str(data['entrada'])+"' WHERE cedula = "+str(data['cedula'])
 
+            cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado, codigoE"
+                           "  FROM cliente where codigoE = '"+data['entrada']+"'")
+
+            auxentrada = cursor.fetchone()
+            if auxentrada is None:
+                sql = "UPDATE cliente  SET entregado = True, codigoe ='"+str(data['entrada'])+"' WHERE cedula = "+str(data['cedula'])
+            else:
+                return response.json({"data": '',"error": "Entrada Repetida"})
 
             # execute the UPDATE  statement
             cursor.execute(sql)
@@ -501,6 +508,9 @@ async def get_by_id(request):
             conn.commit()
         else:
             cambio=False
+
+
+
 
     except (Exception, psycopg2.Error) as error:
         print(error)
@@ -624,13 +634,16 @@ async def get_by_id(request):
         cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE"
                        "  FROM cliente ")
         data = cursor.fetchall()
+
         for row in data:
+            print(row)
+
             aux['nombre'] =row[0]
             aux['apellido'] = row[1]
             aux['cedula'] = row[2]
-            aux['codigo'] = row[3]
             aux['correo'] = row[4]
-            aux['fecha'] = row[5]
+            aux['fecha'] = datetime.strftime(row[5], '%d/%m')
+            aux['codigo'] = row[3]
             aux['codigoE'] = row[7]
 
             if row[6] == True:
@@ -638,7 +651,12 @@ async def get_by_id(request):
             else:
                 aux['entregado'] = 'no'
 
+
             list.append(aux)
+            aux= {}
+
+
+
     except (Exception, psycopg2.Error) as error:
         print(error)
 
@@ -653,7 +671,7 @@ async def get_by_id(request):
 
     if list is not None:
 
-        return response.json({"data":{"entregada":cont,"no":no}, "error": "0"})
+        return response.json({"data":list, "error": "0"})
     else:
         return response.json({"data":"", "error": "No se envío"})
 
