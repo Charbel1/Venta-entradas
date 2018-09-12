@@ -7,7 +7,7 @@ CREATE TABLE cliente
   correo character varying(40) NOT NULL,
   fecha date,
   entregado boolean,
+  codigoE character varying(40),
   CONSTRAINT cliente_pkey PRIMARY KEY (codigo)
 
 )
-

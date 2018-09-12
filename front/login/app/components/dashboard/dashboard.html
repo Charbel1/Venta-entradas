@@ -12,7 +12,7 @@
 
 
 
-
+  <button type="button" csv-header="headersCsv" field-separator=";" ng-csv="form" filename="totalhoras.csv">Export</button>
 </header>
 <div style="margin-top: 10%;">
 
@@ -80,13 +80,25 @@
   </div>
 
   <div ng-if="aux == 'buscar'" style="width: 50%;" class="container">
+    <div ng-show="aux2" class="">
+      <div class="h5">
+        Número Entrada
+      </div>
+      <div class="input-group">
+        <input id="email" type="text" class="form-control" ng-model="entrada"  placeholder="Entrada">
+      </div>
+    </div>
 
-    <div class="h5">
-      Cedula
+
+    <div ng-show="!aux2" class="">
+      <div class="h5">
+        Cedula
+      </div>
+      <div class="input-group">
+        <input id="email" type="text" class="form-control" ng-model="cedula" name="email" placeholder="Cédula">
+      </div>
     </div>
-    <div class="input-group">
-      <input id="email" type="text" class="form-control" ng-model="cedula" name="email" placeholder="Cedula">
-    </div>
+
 
     <div ng-if="auxerror" class="h3">
       {{error}}
@@ -111,6 +123,11 @@
           <span>Entregada: {{data.entregado}}</span>
         </div>
 
+        <div class="row justify-content-md-center">
+          <span>Codigo Entrada: {{data.codigoe}}</span>
+        </div>
+
+
       </div>
 
     </div>
@@ -118,7 +135,7 @@
     <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
 
     <button ng-if="!aux2" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
-    <button ng-if="aux2" class="btn btn-primary" ng-click="aprobar(data.cedula)" class="boton" style=" float: right; " type="submit"> Aprobar</button>
+    <button ng-if="aux2" class="btn btn-primary" ng-click="aprobar(data.cedula , entrada)" class="boton" style=" float: right; " type="submit"> Aprobar</button>
 
   </div>
 

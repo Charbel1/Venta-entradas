@@ -13,15 +13,10 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="https://use.fontawesome.com/5d43079499.js"></script>
-
-  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-
-
-
+  <link rel="stylesheet" href="bower_components/fontawesome-free-5.1.0-web/css/all.css">
 
 
 
@@ -31,10 +26,11 @@
 
 
 
-  <link rel="shortcut icon" type="image/ico" href="">
+  <link rel="shortcut icon" type="image/ico" href="img/logoc.ico">
   <!-- <link rel="shortcut icon" href="img/logoc.ico" /> -->
 
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
 
 
 
@@ -45,7 +41,11 @@
   <div ng-view></div>
 
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
+  <script src="bower_components/ng-csv/build/ng-csv.js"></script>
+
 
   <script src="bower_components/angular-socket-io/mock/socket-io.js"></script>
   <script src="bower_components/angular-socket-io/socket.min.js"></script>
@@ -56,19 +56,34 @@
 
 
 
-  <script src="app.js"></script>
+  <!-- <script type="text/javascript" src="bower_components/angular/angular.min.js"></script> -->
+    <script type="text/javascript" src="bower_components/js-xlsx/dist/xlsx.core.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-js-xlsx/angular-js-xlsx.js"></script>
 
 
+
+
+
+
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
   <script type="text/javascript" src="bower_components/tether/dist/js/tether.js"></script>
   <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+  <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
 
 
+  </script>
 
+  <!-- <script type="text/javascript" src="bower_components/bootstrap-confirmation2/bootstrap-confirmation.js"></script> -->
 
+  <!-- <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script> -->
+
+<script src="app.js"></script>
   <!-- aqui van los components -->
+
   <script src="components/dashboard/dashboard.js"></script>
-  <script src="components/lostpwd/lostpwd.js"></script>
 
 
 

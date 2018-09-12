@@ -396,8 +396,8 @@ async def get_by_id(request):
 
         int(data['cedula'])
         fecha =str(datetime.now())
-        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado)"
-                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false);")
+        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado ,codigoe)"
+                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'');")
 
         conn.commit()
 
@@ -439,7 +439,7 @@ async def get_by_id(request):
     conn = con()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe"
                        "  FROM cliente where cedula = "+data['cedula'])
         data = cursor.fetchone()
         aux['nombre'] =data[0]
@@ -447,6 +447,7 @@ async def get_by_id(request):
         aux['cedula'] = data[2]
         aux['codigo'] = data[3]
         aux['correo'] = data[4]
+
         aux['fecha'] = datetime.strftime(data[5], '%d/%m')
         if (data[6] == True):
             aux['entregado'] ='Si'
@@ -454,6 +455,7 @@ async def get_by_id(request):
         else:
             aux['entregado'] = 'No'
 
+        aux['codigoe'] = data[7]
 
     except (Exception, psycopg2.Error) as error:
         print(error)
@@ -488,7 +490,8 @@ async def get_by_id(request):
 
         if info[6] == False:
             cambio = True
-            sql = " UPDATE cliente  SET entregado = True   WHERE cedula = "+str(data['cedula'])
+            sql = "UPDATE cliente  SET entregado = True, codigoe ='"+str(data['entrada'])+"' WHERE cedula = "+str(data['cedula'])
+
 
             # execute the UPDATE  statement
             cursor.execute(sql)
@@ -528,7 +531,8 @@ async def get_by_id(request):
     conn = con()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha"
+
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,codigoe"
                        "  FROM cliente where cedula = "+data['cedula'])
         data = cursor.fetchone()
         aux['nombre'] =data[0]
@@ -537,6 +541,7 @@ async def get_by_id(request):
         aux['codigo'] = data[3]
         aux['correo'] = data[4]
         aux['fecha'] = data[5]
+        aux['codigoe'] = data[6]
 
     except (Exception, psycopg2.Error) as error:
         print(error)
@@ -605,6 +610,52 @@ async def get_by_id(request):
     else:
         return response.json({"data":"", "error": "No se envío"})
 
+@app.route('/wango/reportecsv',methods=['POST','OPTIONS'])
+@cross_origin(app, automatic_options=True)
+async def get_by_id(request):
+    aux = {}
+    cont = no = 0
+    data = request.json
+    list = []
+    conn = con()
+    cursor = conn.cursor()
+    try:
+
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE"
+                       "  FROM cliente ")
+        data = cursor.fetchall()
+        for row in data:
+            aux['nombre'] =row[0]
+            aux['apellido'] = row[1]
+            aux['cedula'] = row[2]
+            aux['codigo'] = row[3]
+            aux['correo'] = row[4]
+            aux['fecha'] = row[5]
+            aux['codigoE'] = row[7]
+
+            if row[6] == True:
+                aux['entregado'] = 'si'
+            else:
+                aux['entregado'] = 'no'
+
+            list.append(aux)
+    except (Exception, psycopg2.Error) as error:
+        print(error)
+
+
+
+    finally:
+        if conn is not None:
+            conn.close()
+        if cursor is not None:
+            cursor.close()
+
+
+    if list is not None:
+
+        return response.json({"data":{"entregada":cont,"no":no}, "error": "0"})
+    else:
+        return response.json({"data":"", "error": "No se envío"})
 
 
 

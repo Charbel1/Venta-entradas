@@ -5,15 +5,17 @@
 // Declare app level module which depends on views, and components
 angular.module('app', [
     'ngRoute',
+    'ngSanitize',
+    'ngCsv',
     'btford.socket-io',
     'app.dashboard',
     'app.version',
-    'app.lostpwd',
+
 
   ])
 
 
-  .constant('ip', 'http://192.168.1.69:5033')
+  .constant('ip', 'http://localhost:5033')
   .factory('request', ['$http', '$q','$rootScope', function($http, $q,$rootScope) {
     return {
       get: function(url) {

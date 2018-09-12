@@ -42,10 +42,9 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
       $scope.aux2 = false
       $scope.auxerror = false
       $scope.si = false;
+
+      $scope.headersCsv =['Cerradas', 'Abiertas', 'Alarma', 'No Data']
       $scope.cambio = function() {
-
-
-
 
         console.log($scope.cable)
 
@@ -72,6 +71,39 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
       }
 
+
+      $scope.getArray = function(market) {
+
+        var data = {}
+        data.token = tokenapp
+        data.market = market
+        data.sinceP = $scope.period1
+        data.user = userd
+
+
+
+
+        var a = request.post(ip + '/farmatodo/GetTime', data, {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          })
+          .then(function(res) {
+
+            $scope.array = res.data.data
+            return res.data.data
+            console.log(res.data.data)
+
+          }, function(errorMsg) {
+            if (errorMsg.data != null) {
+
+
+
+            } else {
+              console.log("exploto get time")
+            }
+          });
+        return a
+
+      }
 
 
 
@@ -145,6 +177,8 @@ console.log(data)
         $scope.form.correo = "";
         $scope.form.apellido = "";
         $scope.form.nombre = "";
+        $scope.entrada = ""
+        $scope.cedula=""
 
       }
 
@@ -153,7 +187,9 @@ console.log(data)
         $scope.si = false
 
         var data = {}
+
         data.cedula = cedula
+
         request.post(ip + '/wango/buscarC', data, {
             'Content-Type': 'application/x-www-form-urlencoded'
           })
@@ -181,13 +217,16 @@ console.log(data)
       }
 
 
-      $scope.aprobar = function(cedula) {
+      $scope.aprobar = function(cedula,entrada) {
         $scope.auxerror = false
         $scope.aux2 = false
         $scope.si = false
 
         var data = {}
         data.cedula=cedula
+        data.entrada = entrada
+
+        console.log(data)
 
         request.post(ip + '/wango/aprobar', data, {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -203,6 +242,8 @@ console.log(data)
               $scope.form.correo = "";
               $scope.form.apellido = "";
               $scope.form.nombre = "";
+              $scope.entrada = ""
+              $scope.cedula=""
                 $scope.aux = 'main';
             }
 
