@@ -12,12 +12,12 @@
 
 
 
-  <button type="button" csv-header="headersCsv" field-separator=";" ng-csv="form" filename="totalhoras.csv">Export</button>
+
 </header>
 <div style="margin-top: 10%;">
 
   <div ng-if="aux == 'main'" style="width: 50%;" class="container">
-
+    <button type="button" style=" float: right; " csv-header="headersCsv" field-separator=";" ng-csv="getArray()" filename="{{getFecha()}}">Export</button>
 
     <div class="input-group">
       <span style="width: 15%; " class="input-group-addon">nombre</span>
@@ -47,9 +47,9 @@
 
 
 
-    <button class="btn btn-primary" ng-click="cambiar('reenviar')" class="boton" type="submit">Reenviar  Reservacion </button>
+    <button class="btn btn-primary" ng-click="cambiar('reenviar')" class="boton" type="submit">Reenviar  Código </button>
 
-    <button class="btn btn-primary" ng-click="enviar()" class="boton" style=" float: right; " type="submit"> Generar  Reservacion</button>
+    <button class="btn btn-primary" ng-click="enviar()" class="boton" style=" float: right; " type="submit"> Generar  Código</button>
 
     <button class="btn btn-primary" ng-click="reporte()" class="boton" style=" left:50%" type="submit"> Reporte</button>
 
