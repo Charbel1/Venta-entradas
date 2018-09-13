@@ -527,7 +527,7 @@ async def get_by_id(request):
     if cambio:
         return response.json({"data": 'si',"error": "0"})
     elif not cambio:
-        return response.json({"data":"", "error": "Ya Entregada"})
+        return response.json({"data":"", "error": "Entrada Entregada"})
     elif info is None:
         return response.json({"data":"", "error": "No regitrado"})
 
@@ -636,7 +636,7 @@ async def get_by_id(request):
         data = cursor.fetchall()
 
         for row in data:
-            print(row)
+            
 
             aux['nombre'] =row[0]
             aux['apellido'] = row[1]
