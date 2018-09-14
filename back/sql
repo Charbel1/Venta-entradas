@@ -8,6 +8,7 @@ CREATE TABLE cliente
   fecha date,
   entregado boolean,
   codigoE character varying(40),
+  embajador character varying(40),
   CONSTRAINT cliente_pkey PRIMARY KEY (codigo)
 
 )

@@ -20,25 +20,30 @@
     <button type="button" style=" float: right; " csv-header="headersCsv" field-separator=";" ng-csv="getArray()" filename="{{getFecha()}}">Export</button>
 
     <div class="input-group">
-      <span style="width: 15%; " class="input-group-addon">nombre</span>
+      <span style="width: 20%; " class="input-group-addon">nombre</span>
       <br>
       <input type="text" class="form-control" ng-model="form.nombre" name="nombre" placeholder="Nombre">
     </div>
 
     <div class="input-group">
-      <span style="width: 15%; " class="input-group-addon">apellido</span>
+      <span style="width: 20%; " class="input-group-addon">apellido</span>
       <input id="email" type="text" class="form-control" ng-model="form.apellido" name="Apellido" placeholder="Apellido">
     </div>
 
     <div class="input-group">
-      <span style="width: 15%; " class="input-group-addon">cedula</span>
+      <span style="width: 20%; " class="input-group-addon">cedula</span>
       <input id="email" type="text" class="form-control" ng-model="form.cedula" name="Cedula" placeholder="Cedula">
     </div>
 
 
     <div class="input-group">
-      <span style="width: 15%; " class="input-group-addon">correo</span>
+      <span style="width: 20%; " class="input-group-addon">Correo</span>
       <input id="email" type="text" class="form-control" ng-model="form.correo" name="email" placeholder="Correo">
+    </div>
+
+    <div class="input-group">
+      <span style="width: 20%; " class="input-group-addon">Código Embajador</span>
+      <input id="email" type="text" class="form-control" ng-model="form.embajador" name="email" placeholder="Código Embajador">
     </div>
 
     <div ng-if="auxerror" class="h3">
@@ -118,6 +123,10 @@
         </div>
         <div class="row justify-content-md-center">
           <span>Fecha: {{data.fecha}}</span>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <span>Codigo Embajador: {{data.embajador}}</span>
         </div>
         <div class="row justify-content-md-center">
           <span>Entregada: {{data.entregado}}</span>

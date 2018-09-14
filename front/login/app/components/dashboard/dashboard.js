@@ -47,7 +47,8 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
 
 
-      $scope.headersCsv = ['Nombre', 'Apellido', 'Cédula', 'Correo', 'Fecha', 'Código', 'Código Entrada', 'Entregada']
+
+      $scope.headersCsv = ['Nombre', 'Apellido', 'Cédula', 'Correo', 'Fecha', 'Código','Embajador', 'Código Entrada', 'Entregada']
       $scope.cambio = function() {
 
         console.log($scope.cable)
@@ -97,9 +98,10 @@ $scope.getFecha = function()
         })
         .then(function(res) {
           console.log(res.data.data)
+
           $scope.array = res.data.data
           return res.data.data
-          console.log(res.data.data)
+            console.log(res.data.data)
 
         }, function(errorMsg) {
           $scope.auxerror = true
@@ -285,6 +287,14 @@ $scope.getFecha = function()
                   if (res.data.error != 0) {
                     $scope.auxerror = true
                     $scope.error = res.data.error
+                     if (res.data.error == 'No se envío ')
+                     {
+                       $scope.form = {}
+                       $scope.form.cedula = "";
+                       $scope.form.correo = "";
+                       $scope.form.apellido = "";
+                       $scope.form.nombre = "";
+                     }
                   } else {
                     $scope.form = {}
                     $scope.form.cedula = "";

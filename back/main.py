@@ -396,8 +396,8 @@ async def get_by_id(request):
 
         int(data['cedula'])
         fecha =str(datetime.now())
-        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado )"
-                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false);")
+        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado, embajador )"
+                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'"+data['embajador']+"');")
 
         conn.commit()
 
@@ -439,7 +439,7 @@ async def get_by_id(request):
     conn = con()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe ,embajador"
                        "  FROM cliente where cedula = "+data['cedula'])
         data = cursor.fetchone()
         aux['nombre'] =data[0]
@@ -447,7 +447,7 @@ async def get_by_id(request):
         aux['cedula'] = data[2]
         aux['codigo'] = data[3]
         aux['correo'] = data[4]
-
+        aux['embajador'] = data[8]
         aux['fecha'] = datetime.strftime(data[5], '%d/%m')
         if (data[6] == True):
             aux['entregado'] ='Si'
@@ -499,8 +499,8 @@ async def get_by_id(request):
                 sql = "UPDATE cliente  SET entregado = True, codigoe ='"+str(data['entrada'])+"' WHERE cedula = "+str(data['cedula'])
             else:
                 return response.json({"data": '',"error": "Entrada Repetida"})
-
             # execute the UPDATE  statement
+
             cursor.execute(sql)
             # get the number of updated rows
 
@@ -631,12 +631,12 @@ async def get_by_id(request):
     cursor = conn.cursor()
     try:
 
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE,embajador"
                        "  FROM cliente ")
         data = cursor.fetchall()
 
         for row in data:
-            
+
 
             aux['nombre'] =row[0]
             aux['apellido'] = row[1]
@@ -644,12 +644,14 @@ async def get_by_id(request):
             aux['correo'] = row[4]
             aux['fecha'] = datetime.strftime(row[5], '%d/%m')
             aux['codigo'] = row[3]
+            aux['embajador'] = row[8]
             aux['codigoE'] = row[7]
-
             if row[6] == True:
                 aux['entregado'] = 'si'
             else:
                 aux['entregado'] = 'no'
+
+            print(aux)
 
 
             list.append(aux)
