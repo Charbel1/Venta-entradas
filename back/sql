@@ -10,6 +10,7 @@ CREATE TABLE cliente
   codigoE character varying(40),
   embajador character varying(40),
   entro boolean,
+  feo boolean,
   CONSTRAINT cliente_pkey PRIMARY KEY (codigo)
 
 )
