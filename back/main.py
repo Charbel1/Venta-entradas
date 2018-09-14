@@ -631,8 +631,8 @@ async def get_by_id(request):
     cursor = conn.cursor()
     try:
 
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE,embajador"
-                       "  FROM cliente ")
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE,embajador,entro"
+                       "  FROM cliente order by entregado ")
         data = cursor.fetchall()
 
         for row in data:
@@ -650,6 +650,10 @@ async def get_by_id(request):
                 aux['entregado'] = 'si'
             else:
                 aux['entregado'] = 'no'
+            if row[9] == True:
+                aux['entro'] = 'si'
+            else:
+                aux['entro'] = 'no'
 
             print(aux)
 

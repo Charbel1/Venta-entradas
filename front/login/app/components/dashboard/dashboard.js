@@ -48,7 +48,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
 
 
-      $scope.headersCsv = ['Nombre', 'Apellido', 'Cédula', 'Correo', 'Fecha', 'Código','Embajador', 'Código Entrada', 'Entregada']
+      $scope.headersCsv = ['Nombre', 'Apellido', 'Cédula', 'Correo', 'Fecha', 'Código','Embajador', 'Código Entrada', 'Entregada','Entro']
       $scope.cambio = function() {
 
         console.log($scope.cable)
@@ -64,6 +64,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
       $scope.form.correo = "";
       $scope.form.apellido = "";
       $scope.form.nombre = "";
+      $scope.form.embajador = "";
 
 
       // funcion para borrar los datos de session y hacer logout
@@ -182,6 +183,7 @@ $scope.getFecha = function()
       $scope.form.correo = "";
       $scope.form.apellido = "";
       $scope.form.nombre = "";
+      $scope.form.embajador = "";
       $scope.entrada = ""
       $scope.cedula = ""
 
@@ -249,6 +251,7 @@ $scope.getFecha = function()
             $scope.form.correo = "";
             $scope.form.apellido = "";
             $scope.form.nombre = "";
+            $scope.form.embajador = "";
             $scope.entrada = ""
             $scope.cedula = ""
             $scope.aux = 'main';
@@ -294,6 +297,7 @@ $scope.getFecha = function()
                        $scope.form.correo = "";
                        $scope.form.apellido = "";
                        $scope.form.nombre = "";
+                       $scope.form.embajador = "";
                      }
                   } else {
                     $scope.form = {}
@@ -301,6 +305,7 @@ $scope.getFecha = function()
                     $scope.form.correo = "";
                     $scope.form.apellido = "";
                     $scope.form.nombre = "";
+                    $scope.form.embajador = "";
                   }
 
                 }, function(errorMsg) {
