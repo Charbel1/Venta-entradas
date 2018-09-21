@@ -282,8 +282,8 @@ def sendMail(data,random):
                             <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                               <tbody>
                                 <tr>
-                                  <td align="center">                                    
-                                    
+                                  <td align="center">
+
                                     <div class="h3">
                                         <b>"""+str(random)+"""</b>
                                     </div>
@@ -292,9 +292,9 @@ def sendMail(data,random):
                               </tbody>
                             </table>
                             <p>Puedes retirar tu entrada personalmente en nuestra oficina ubicada en
-                            Av Andrés Bello entre Francisco de Miranda y transversal 1 Edificio plaza 1  
-                            Planta Baja  salón Arena Los Palos Grandes  
-                             Contacto al momento de retirar la entrada 0212-7143333  
+                            Av Andrés Bello entre Francisco de Miranda y transversal 1 Edificio plaza 1
+                            Planta Baja  salón Arena Los Palos Grandes
+                             Contacto al momento de retirar la entrada 0212-7143333
                             Horario de entregas 9:00 AM a 4:00 PM de lunes a viernes  </p>
                               </td>
                             </tr>
@@ -308,7 +308,7 @@ def sendMail(data,random):
                       <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
                           <td class="content-block">
-                            <span class="apple-link">X-PARTY</span>
+                            <span class="apple-link">Wango</span>
                           </td>
                         </tr>
                         <tr>
@@ -330,7 +330,7 @@ def sendMail(data,random):
     """
 
     msg = email.message.Message()
-    msg['Subject'] = 'Entrada Digital'
+    msg['Subject'] = 'Entrada Digital Wango'
 
     msg['From'] = 'xparty.ventas@gmail.com'
     msg['To'] = data['correo']
@@ -395,8 +395,8 @@ async def get_by_id(request):
 
         int(data['cedula'])
         fecha =str(datetime.now())
-        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado, embajador )"
-                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'"+data['embajador']+"');")
+        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado, embajador,instagram )"
+                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'"+data['embajador']+"','"+data['instagram']+"');")
 
         conn.commit()
 
@@ -439,7 +439,7 @@ async def get_by_id(request):
     conn = con()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe ,embajador"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe ,embajador , instagram"
                        "  FROM cliente where cedula = "+data['cedula'])
         data = cursor.fetchone()
         aux['nombre'] =data[0]
@@ -449,6 +449,7 @@ async def get_by_id(request):
         aux['correo'] = data[4]
         aux['embajador'] = data[8]
         aux['fecha'] = datetime.strftime(data[5], '%d/%m')
+        aux['instagram'] = data[9]
         if (data[6] == True):
             aux['entregado'] ='Si'
 
@@ -633,7 +634,7 @@ async def get_by_id(request):
     cursor = conn.cursor()
     try:
 
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE,embajador,entro"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo,instagram, fecha,entregado,codigoE,embajador,entro"
                        "  FROM cliente order by entregado ")
         data = cursor.fetchall()
 
@@ -644,15 +645,16 @@ async def get_by_id(request):
             aux['apellido'] = row[1]
             aux['cedula'] = row[2]
             aux['correo'] = row[4]
-            aux['fecha'] = datetime.strftime(row[5], '%d/%m')
+            aux['instagram'] = row[5]
+            aux['fecha'] = datetime.strftime(row[6], '%d/%m')
             aux['codigo'] = row[3]
-            aux['embajador'] = row[8]
-            aux['codigoE'] = row[7]
-            if row[6] == True:
+            aux['embajador'] = row[9]
+            aux['codigoE'] = row[8]
+            if row[7] == True:
                 aux['entregado'] = 'si'
             else:
                 aux['entregado'] = 'no'
-            if row[9] == True:
+            if row[10] == True:
                 aux['entro'] = 'si'
             else:
                 aux['entro'] = 'no'

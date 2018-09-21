@@ -48,7 +48,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
 
 
-      $scope.headersCsv = ['Nombre', 'Apellido', 'Cédula', 'Correo', 'Fecha', 'Código', 'Embajador', 'Código Entrada', 'Entregada', 'Entro']
+      $scope.headersCsv = ['Nombre', 'Apellido', 'Cédula', 'Correo', 'instagram','Fecha', 'Código', 'Embajador', 'Código Entrada', 'Entregada', 'Asistió']
       $scope.cambio = function() {
 
         console.log($scope.cable)
