@@ -42,6 +42,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
       $scope.aux2 = false
       $scope.auxerror = false
       $scope.si = false
+      $scope.bloq = false
 
 
 
@@ -227,7 +228,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
         $scope.auxerror = false
         $scope.aux2 = false
         $scope.si = false
-          $scope.error = ""
+        $scope.error = ""
         var data = {}
         data.entrada =""
         data.cedula = cedula
@@ -277,7 +278,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
       // email.match(emailValid)
 
       $scope.enviar = function() {
-        $scope.auxerror = false
+
         var data = $scope.form
 
         var validCorreo = $scope.form.correo.match(emailValid)
@@ -286,12 +287,12 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
           if ($scope.form.cedula.length > 0) {
             if ($scope.form.nombre.length > 0) {
               if ($scope.form.apellido.length > 0) {
-                console.log("entro")
+                    $scope.bloq = true
                 request.post(ip + '/wango/registro', data, {
                     'Content-Type': 'application/x-www-form-urlencoded'
                   })
                   .then(function(res) {
-
+                    $scope.bloq = false
                     if (res.data.error != 0) {
                       $scope.auxerror = true
                       $scope.error = res.data.error
@@ -310,9 +311,13 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
                       $scope.form.apellido = "";
                       $scope.form.nombre = "";
                       $scope.form.embajador = "";
+                      $scope.auxerror = true
+                      $scope.error = "Ok"
+
                     }
 
                   }, function(errorMsg) {
+                      $scope.bloq = false
                     $scope.auxerror = true
                     $scope.error = "Error de conexión"
 
