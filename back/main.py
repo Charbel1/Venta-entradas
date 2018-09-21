@@ -395,14 +395,14 @@ async def get_by_id(request):
 
         int(data['cedula'])
         fecha =str(datetime.now())
-        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado, embajador,instagram )"
-                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'"+data['embajador']+"','"+data['instagram']+"');")
+        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado, embajador )"
+                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'"+data['embajador']+"');")
 
         conn.commit()
 
     except ValueError:
         return response.json({"data": "", "error": "Error en Cédula"})
-            print("Error Cedula")
+        print("Error Cedula")
     except (Exception, psycopg2.IntegrityError) as error:
         print(error)
         conn.rollback()
@@ -439,7 +439,7 @@ async def get_by_id(request):
     conn = con()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe ,embajador , instagram"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe ,embajador "
                        "  FROM cliente where cedula = "+data['cedula'])
         data = cursor.fetchone()
         aux['nombre'] =data[0]
@@ -449,7 +449,7 @@ async def get_by_id(request):
         aux['correo'] = data[4]
         aux['embajador'] = data[8]
         aux['fecha'] = datetime.strftime(data[5], '%d/%m')
-        aux['instagram'] = data[9]
+
         if (data[6] == True):
             aux['entregado'] ='Si'
 
@@ -633,7 +633,7 @@ async def get_by_id(request):
     cursor = conn.cursor()
     try:
 
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo,instagram, fecha,entregado,codigoE,embajador,entro"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE,embajador,entro"
                        "  FROM cliente order by entregado ")
         data = cursor.fetchall()
 
@@ -644,16 +644,16 @@ async def get_by_id(request):
             aux['apellido'] = row[1]
             aux['cedula'] = row[2]
             aux['correo'] = row[4]
-            aux['instagram'] = row[5]
-            aux['fecha'] = datetime.strftime(row[6], '%d/%m')
+            #aux['instagram'] = row[5]
+            aux['fecha'] = datetime.strftime(row[5], '%d/%m')
             aux['codigo'] = row[3]
-            aux['embajador'] = row[9]
-            aux['codigoE'] = row[8]
-            if row[7] == True:
+            aux['embajador'] = row[8]
+            aux['codigoE'] = row[7]
+            if row[6] == True:
                 aux['entregado'] = 'si'
             else:
                 aux['entregado'] = 'no'
-            if row[10] == True:
+            if row[9] == True:
                 aux['entro'] = 'si'
             else:
                 aux['entro'] = 'no'

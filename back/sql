@@ -9,7 +9,6 @@ CREATE TABLE cliente
   entregado boolean,
   codigoE character varying(40),
   embajador character varying(40),
-  instagram character varying(40),
   entro boolean,
   feo boolean,
   CONSTRAINT cliente_pkey PRIMARY KEY (codigo)
