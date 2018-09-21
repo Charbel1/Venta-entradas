@@ -402,7 +402,7 @@ async def get_by_id(request):
 
     except ValueError:
         return response.json({"data": "", "error": "Error en Cédula"})
-
+            print("Error Cedula")
     except (Exception, psycopg2.IntegrityError) as error:
         print(error)
         conn.rollback()
@@ -569,7 +569,7 @@ async def get_by_id(request):
     if data is not None:
 
         try:
-            print(aux['codigo'])
+
             sendMail(aux,aux['codigo'])
             return response.json({"data":"","error":"0"})
         except Exception as e:
@@ -618,10 +618,9 @@ async def get_by_id(request):
 
 
     if list is not None:
-
         return response.json({"data":{"entregada":cont,"no":no}, "error": "0"})
     else:
-        return response.json({"data":"", "error": "No se envío"})
+        return response.json({"data":{"entregada":cont,"no":no}, "error": "0"})
 
 @app.route('/wango/reportecsv',methods=['POST','OPTIONS'])
 @cross_origin(app, automatic_options=True)
@@ -659,7 +658,7 @@ async def get_by_id(request):
             else:
                 aux['entro'] = 'no'
 
-            print(aux)
+
 
 
             list.append(aux)
