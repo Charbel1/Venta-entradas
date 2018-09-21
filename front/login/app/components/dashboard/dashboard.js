@@ -60,12 +60,14 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
 
       }
+
       $scope.form = {}
       $scope.form.cedula = "";
       $scope.form.correo = "";
       $scope.form.apellido = "";
       $scope.form.nombre = "";
       $scope.form.embajador = "";
+        $scope.form.instagram = "";
 
 
       // funcion para borrar los datos de session y hacer logout
@@ -224,6 +226,19 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
       }
 
 
+      $scope.limpiarform = function()
+      {
+        $scope.form = {}
+        $scope.form.cedula = "";
+        $scope.form.correo = "";
+        $scope.form.apellido = "";
+        $scope.form.nombre = "";
+        $scope.form.embajador = "";
+        $scope.form.instagram = "";
+        $scope.entrada = ""
+        $scope.cedula = ""
+
+      }
       $scope.aprobar = function(cedula, entrada) {
         $scope.auxerror = false
         $scope.aux2 = false
@@ -247,14 +262,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
                 $scope.entrada = "";
 
               } else {
-                $scope.form = {}
-                $scope.form.cedula = "";
-                $scope.form.correo = "";
-                $scope.form.apellido = "";
-                $scope.form.nombre = "";
-                $scope.form.embajador = "";
-                $scope.entrada = ""
-                $scope.cedula = ""
+                $scope.limpiar()
                 $scope.aux = 'main';
               }
 
@@ -282,10 +290,9 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
         var data = $scope.form
 
         var validCorreo = $scope.form.correo.match(emailValid)
-        console.log(validCorreo)
-        if (validCorreo != null) {
+        if ($scope.form.nombre.length > 0)   {
           if ($scope.form.cedula.length > 0) {
-            if ($scope.form.nombre.length > 0) {
+           if (validCorreo != null){
               if ($scope.form.apellido.length > 0) {
                     $scope.bloq = true
                 request.post(ip + '/wango/registro', data, {
@@ -302,6 +309,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
                         $scope.form.correo = "";
                         $scope.form.apellido = "";
                         $scope.form.nombre = "";
+                        $scope.form.embajador = "";
                         $scope.form.embajador = "";
                       }
                     } else {
@@ -330,7 +338,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
               }
             } else {
               $scope.auxerror = true
-              $scope.error = "Campo Nombre Vacío"
+                      $scope.error = "No es un correo valido"
 
             }
           } else {
@@ -341,7 +349,8 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
         } else {
           $scope.auxerror = true
-          $scope.error = "No es un correo valido"
+                    $scope.error = "Campo Nombre Vacío"
+
         }
 
 
