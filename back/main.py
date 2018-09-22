@@ -334,7 +334,7 @@ def sendMail(data,random):
     """
 
     msg = email.message.Message()
-    msg['Subject'] = 'Entrada Digital Wango'
+    msg['Subject'] = 'Registro Digital Wango'
 
     msg['From'] = 'xparty.ventas@gmail.com'
     msg['To'] = data['correo']
