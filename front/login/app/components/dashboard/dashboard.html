@@ -134,11 +134,11 @@
           <span>Codigo Embajador: {{data.embajador}}</span>
         </div>
         <div class="row justify-content-md-center">
-          <span>Entregada: {{data.entregado}}</span>
+          <span>Vendida: {{data.entregado}}</span>
         </div>
 
         <div class="row justify-content-md-center">
-          <span>Codigo Entrada: {{data.codigoe}}</span>
+          <span>Serial de Entrada: {{data.codigoe}}</span>
         </div>
 
 
@@ -149,7 +149,7 @@
     <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
 
     <button ng-if="!aux2" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
-    <button ng-if="aux2" class="btn btn-primary" ng-click="aprobar(data.cedula , entrada)" class="boton" style=" float: right; " type="submit"> Aprobar</button>
+    <button ng-if="aux2" class="btn btn-primary" ng-click="aprobar(data.cedula , entrada)" class="boton" style=" float: right; " type="submit"> Vendida</button>
 
   </div>
 

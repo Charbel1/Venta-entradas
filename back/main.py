@@ -99,7 +99,7 @@ def sendMail(data,random):
                   TYPOGRAPHY
               ------------------------------------- */
               h1,
-              h2,
+
               h3,
               h4 {
                 color: #000000;
@@ -276,9 +276,8 @@ def sendMail(data,random):
                             <tr>
                               <td>
                                 <img src="https://goo.gl/images/S7Mgch" style="height:100px" alt="">
-                             <p>Saludos  <b>"""+data["nombre"]+"""  """+data["apellido"]+"""</b>. </p>
-                            <p>Anexamos en este correo el código correspondiente a la compra de tu entrada</p>
-                            <p>este codigo es <b>Intransferible</b> solo lo podras usar  <b>TU</b>.</p>
+                            <p>Saludos  <b>"""+data["nombre"].upper()+"""  """+data["apellido"].upper()+"""</b>. </p>
+                            <p>Anexamos en este correo el número correspondiente a su registro en la base de datos de <b>WANGO</b>  </p>
                             <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                               <tbody>
                                 <tr>
@@ -291,11 +290,16 @@ def sendMail(data,random):
                                 </tr>
                               </tbody>
                             </table>
-                            <p>Puedes retirar tu entrada personalmente en nuestra oficina ubicada en
-                            Av Andrés Bello entre Francisco de Miranda y transversal 1 Edificio plaza 1
-                            Planta Baja  salón Arena Los Palos Grandes
-                             Contacto al momento de retirar la entrada 0212-7143333
-                            Horario de entregas 9:00 AM a 4:00 PM de lunes a viernes  </p>
+                            <p>Puedes realizar la compra de  tu entrada a través de un embajador autorizado
+                            o personalmente en nuestra oficina ubicada en la siguiente dirección:</p>
+                            <p>Av Andrés Bello entre Francisco de Miranda y transversal 1, Edificio plaza 1,
+                            Planta Baja,  salón Arena, Los Palos Grandes, Caracas.
+                             Contacto al momento de retirar la entrada 0212-7143333</p>
+                            <p>Horario de entregas: </p>
+                            <p>10:00 AM a 4:00 PM de Lunes a Jueves  y de 10:00 AM a 2:00 PM los dias Viernes </p>
+                            <div class="h2">
+                            <b> CON ESTE REGISTRO PARTICIPAS EN SORTEOS DE ENTRADAS DE CORTESIA Y OTROS PREMIOS ESPECIALES</b>
+                            </div>
                               </td>
                             </tr>
                           </table>
@@ -634,7 +638,7 @@ async def get_by_id(request):
     try:
 
         cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE,embajador,entro"
-                       "  FROM cliente order by entregado ")
+                       "  FROM cliente order by  entregado  DESC , embajador ")
         data = cursor.fetchall()
 
         for row in data:
