@@ -164,7 +164,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
             } else {
 
               $scope.auxerror = true
-              $scope.error = "No Entregadas " + res.data.data.no + " Entregadas " + res.data.data.entregada
+              $scope.error = "No Entregadas " + res.data.data.no + " Vendidas " + res.data.data.entregada
             }
 
           }, function(errorMsg) {
