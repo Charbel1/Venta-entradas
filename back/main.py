@@ -399,8 +399,8 @@ async def get_by_id(request):
 
         int(data['cedula'])
         fecha =str(datetime.now())
-        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado, embajador )"
-                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'"+data['embajador']+"');")
+        cursor.execute("INSERT INTO cliente(nombre, apellido, cedula, codigo, correo, fecha, entregado, embajador ,numero )"
+                       "VALUES ('"+data['nombre']+"', '"+data['apellido']+"', '"+data['cedula']+"',"+str(random)+" ,'"+data['correo']+"', TO_DATE('"+fecha+"', 'DD/MM/YYYY'),false,'"+data['embajador']+"','"+data['numero']+"');")
 
         conn.commit()
 
@@ -637,18 +637,18 @@ async def get_by_id(request):
     cursor = conn.cursor()
     try:
 
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE,embajador,entro"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado,codigoE,embajador,entro,numero"
                        "  FROM cliente order by  entregado  DESC , embajador ")
         data = cursor.fetchall()
 
         for row in data:
-
+      
 
             aux['nombre'] =row[0]
             aux['apellido'] = row[1]
             aux['cedula'] = row[2]
             aux['correo'] = row[4]
-            #aux['instagram'] = row[5]
+            aux['numero'] = row[10]
             aux['fecha'] = datetime.strftime(row[5], '%d/%m')
             aux['codigo'] = row[3]
             aux['embajador'] = row[8]
