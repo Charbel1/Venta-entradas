@@ -49,7 +49,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
 
 
 
-      $scope.headersCsv = ['Nombre', 'Apellido', 'Cédula', 'Correo', 'Fecha', 'Código', 'Embajador', 'Código Entrada', 'Entregada', 'Asistió']
+      $scope.headersCsv = ['NOMBRE', 'APELLIDO', 'CI', 'CORREO','NUMERO', 'FECHA', 'REGISTRO', 'EMBAJADOR', 'SERIAL ENTRADA', 'ENTREGADA', 'ASISTIO']
       $scope.cambio = function() {
 
         console.log($scope.cable)
@@ -164,7 +164,7 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
             } else {
 
               $scope.auxerror = true
-              $scope.error = "No Entregadas " + res.data.data.no + " Entregadas " + res.data.data.entregada
+              $scope.error = "No Entregadas " + res.data.data.no + " Vendidas " + res.data.data.entregada
             }
 
           }, function(errorMsg) {
