@@ -9,6 +9,7 @@ angular.module('app', [
     'ngCsv',
     'btford.socket-io',
     'app.dashboard',
+    'app.entrada',
     'app.version',
 
 

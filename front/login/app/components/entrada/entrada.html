@@ -1,0 +1,88 @@
+</div>
+
+
+<body>
+
+
+  <div style="width: 30%; margin-top: 10%" class="container center">
+
+
+          <div style="left:25%"  class="input-group">
+            <span class="">
+            <div class="radio">
+              <label>
+                <input  ng-click="cambio('cedula')" checked type="radio" name="radio"> Cédula
+              </label>
+            </div>
+          </span>
+            <span style="padding-left: 10px;" class="">
+            <div class="radio">
+              <label>
+                <input  ng-click="cambio('codigo')" type="radio" name="radio"> Código
+              </label>
+            </div>
+          </span>
+          </div>
+    <div ng-show="aux2" class="">
+
+      <div class="input-group">
+        <input ng-keypress="enter($event)" type="text" class="form-control" ng-model="codigo" placeholder="Entrada">
+      </div>
+    </div>
+
+
+    <div ng-show="!aux2" class="center">
+
+
+      <div class="input-group">
+        <input ng-keypress="enter($event)" type="text" class="form-control" ng-model="cedula"  placeholder="Cédula">
+      </div>
+    </div>
+
+
+    <div ng-if="auxerror" class="h3">
+      {{error}}
+    </div>
+
+
+
+    <div ng-if="si" class="h3">
+      <div class="container">
+
+        <div class="row justify-content-md-center">
+          <span>Nombre: {{data.nombre}}</span>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <span>Apellido: {{data.apellido}}</span>
+        </div>
+        <div class="row justify-content-md-center">
+          <span>Fecha: {{data.fecha}}</span>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <span>Codigo Embajador: {{data.embajador}}</span>
+        </div>
+        <div class="row justify-content-md-center">
+          <span>Entregada: {{data.entregado}}</span>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <span>Codigo Entrada: {{data.codigoe}}</span>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary" ng-click="limpiar()" class="boton" type="submit"> Limpiar</button>
+
+    <button ng-if="!si" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
+    <button ng-if="si" class="btn btn-success" ng-click="enviar(false)" class="boton" style=" float: right; " type="submit"> Entro</button>
+    <button ng-if="si" class="btn btn-danger" ng-click="enviar(true)" class="boton" style=" float: right;margin-right: 5%"  type="submit"> Entro</button>
+
+  </div>
+
+
+</body>
