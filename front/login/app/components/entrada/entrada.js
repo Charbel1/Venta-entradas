@@ -19,8 +19,8 @@ angular.module('app.entrada', ['ngRoute', 'LocalStorageModule'])
     function($scope, $rootScope, $routeParams, $location, $interval, $http, $q, ip, request) {
 
       $scope.data = {}
-      $scope.si = true;
-      $scope.entrada = ""
+      $scope.si = false;
+      $scope.codigo = ""
       $scope.cedula = ""
       // {
       // "value":"hcolmenares",
@@ -53,11 +53,12 @@ angular.module('app.entrada', ['ngRoute', 'LocalStorageModule'])
 
         if (event.keyCode === 13) {
 
-          if ($scope.entrada.length > 0) {
-            alert("")
+          if ($scope.codigo.length > 0) {
+            console.log("entre")
+            $scope.buscarCo($scope.codigo)
 
           } else if ($scope.cedula.length > 0) {
-            $scope.buscar()
+            $scope.buscar($scope.cedula)
           }
 
 
@@ -69,40 +70,30 @@ angular.module('app.entrada', ['ngRoute', 'LocalStorageModule'])
 
         var data = {};
         data.feo = feo
+        data.cedula = $scope.data.cedula
 
 
-        if ($scope.aux2 == true) {
-          data.criteria = 'codigo'
-          data.valor = $scope.codigo
-        } else {
-          data.valor = $scope.cedula
-          data.criteria = "cedula"
-        }
 
-        console.log(data)
-        $scope.cargar = true;
-        request.post(ip + '/auth/restart-pwd/get-token', data, {
+
+        request.post(ip + '/wango/entro', data, {
             'Content-Type': 'application/x-www-form-urlencoded'
           })
           .then(function(res) {
+            if (res.data.error != 0) {
 
-
-            console.log("envie correo")
-            console.log(res)
-            $location.path("/main")
-
-
+              $scope.auxerror = true
+              $scope.error = res.data.error
+            } else {
+              $scope.aux2 = true
+              $scope.auxerror = false
+              $scope.si = true;
+              $scope.auxerror = true
+              $scope.error = "Ok"
+            }
 
           }, function(errorMsg) {
-            $scope.cargar = false;
-            console.log(errorMsg)
-            if (errorMsg.data != null) {
-
-              request.error(errorMsg.data.error);
-            } else {
-              request.error(-1);
-            }
-            $scope.error = true;
+            $scope.auxerror = true
+            $scope.error = "Error de conexión"
 
 
           });
@@ -116,7 +107,7 @@ angular.module('app.entrada', ['ngRoute', 'LocalStorageModule'])
 
         var data = {}
 
-        data.cedula = "123"
+        data.cedula = cedula
         request.post(ip + '/wango/buscarC', data, {
             'Content-Type': 'application/x-www-form-urlencoded'
           })
@@ -142,6 +133,40 @@ angular.module('app.entrada', ['ngRoute', 'LocalStorageModule'])
 
 
       }
+
+      $scope.buscarCo = function(codigo) {
+        $scope.aux2 = true
+        $scope.si = false
+
+        var data = {}
+
+        data.codigo = "'" + codigo + "'"
+        request.post(ip + '/wango/buscarCodigo', data, {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          })
+          .then(function(res) {
+
+            if (res.data.error != 0) {
+
+              $scope.auxerror = true
+              $scope.error = res.data.error
+            } else {
+              $scope.aux2 = true
+              $scope.auxerror = false
+              console.log(res.data.data)
+              $scope.data = res.data.data
+              $scope.si = true;
+            }
+
+          }, function(errorMsg) {
+            $scope.auxerror = true
+            $scope.error = "Error de conexión"
+
+          });
+
+
+      }
+
 
 
 

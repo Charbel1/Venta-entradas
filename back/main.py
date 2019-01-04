@@ -443,7 +443,7 @@ async def get_by_id(request):
     conn = con()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe ,embajador "
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe ,embajador,entro "
                        "  FROM cliente where cedula = "+data['cedula'])
         data = cursor.fetchone()
         aux['nombre'] =data[0]
@@ -453,12 +453,18 @@ async def get_by_id(request):
         aux['correo'] = data[4]
         aux['embajador'] = data[8]
         aux['fecha'] = datetime.strftime(data[5], '%d/%m')
+        if (data[9] == True):
+            aux['entro'] ='Si'
 
+        else:
+            aux['entro'] = 'No'
         if (data[6] == True):
             aux['entregado'] ='Si'
 
         else:
             aux['entregado'] = 'No'
+
+
 
         aux['codigoe'] = data[7]
 
@@ -478,6 +484,63 @@ async def get_by_id(request):
         return response.json({"data": aux, "error": "0"})
     else:
         return response.json({"data":"", "error": "No regitrado"})
+
+
+@app.route('/wango/buscarCodigo',methods=['POST','OPTIONS'])
+@cross_origin(app, automatic_options=True)
+async def get_by_id(request):
+    aux = {}
+    data = request.json
+    print(data)
+    conn = con()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado , codigoe ,embajador,entro "
+                       "  FROM cliente where codigoe = "+data['codigo'])
+        data = cursor.fetchone()
+
+
+        aux['nombre'] =data[0]
+        aux['apellido'] = data[1]
+        aux['cedula'] = data[2]
+        aux['codigo'] = data[3]
+        aux['correo'] = data[4]
+        aux['embajador'] = data[8]
+        aux['fecha'] = datetime.strftime(data[5], '%d/%m')
+
+
+        if (data[6] == True):
+            aux['entregado'] ='Si'
+
+        else:
+            aux['entregado'] = 'No'
+
+        if (data[9] == True):
+            aux['entro'] ='Si'
+
+        else:
+            aux['entro'] = 'No'
+
+        aux['codigoe'] = data[7]
+
+    except (Exception, psycopg2.Error) as error:
+        print(error)
+
+
+
+    finally:
+        if conn is not None:
+            conn.close()
+        if cursor is not None:
+            cursor.close()
+
+
+    if data is not None:
+        return response.json({"data": aux, "error": "0"})
+    else:
+        return response.json({"data":"", "error": "No regitrado"})
+
+
 
 
 @app.route('/wango/aprobar',methods=['POST','OPTIONS'])
@@ -535,6 +598,50 @@ async def get_by_id(request):
         return response.json({"data":"", "error": "Entrada Entregada"})
     elif info is None:
         return response.json({"data":"", "error": "No regitrado"})
+
+
+
+@app.route('/wango/entro',methods=['POST','OPTIONS'])
+@cross_origin(app, automatic_options=True)
+async def get_by_id(request):
+    aux = {}
+    data = request.json
+    print(data)
+
+    conn = con()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha ,entregado, codigoE"
+                       "  FROM cliente where cedula = "+str(data['cedula']))
+        info = cursor.fetchone()
+
+        if info is not None:
+
+            sql = "UPDATE cliente  SET entro = True, feo ='"+str(data['feo'])+"' WHERE cedula = "+str(data['cedula'])
+
+            cursor.execute(sql)
+
+            conn.commit()
+
+
+
+    except (Exception, psycopg2.Error) as error:
+        print(error)
+        return response.json({"data": '',"error": "Error"})
+
+
+    finally:
+        if conn is not None:
+            conn.close()
+        if cursor is not None:
+            cursor.close()
+
+
+
+    if info is None:
+        return response.json({"data":"", "error": "No regitrado"})
+    else:
+        return response.json({"data":"", "error": "Ok"})
 
 
 @app.route('/wango/renviarC',methods=['POST','OPTIONS'])
@@ -642,7 +749,7 @@ async def get_by_id(request):
         data = cursor.fetchall()
 
         for row in data:
-      
+
 
             aux['nombre'] =row[0]
             aux['apellido'] = row[1]

@@ -11,6 +11,7 @@ CREATE TABLE cliente
   embajador character varying(40),
   entro boolean,
   feo boolean,
+  numero character varying(40),
   CONSTRAINT cliente_pkey PRIMARY KEY (codigo)
 
 )

@@ -71,6 +71,10 @@
           <span>Codigo Entrada: {{data.codigoe}}</span>
         </div>
 
+        <div class="row justify-content-md-center">
+          <span>Asistio: {{data.entro}}</span>
+        </div>
+
 
       </div>
 
@@ -78,7 +82,8 @@
 
     <button class="btn btn-primary" ng-click="limpiar()" class="boton" type="submit"> Limpiar</button>
 
-    <button ng-if="!si" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
+    <button ng-if="!si && !aux2" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
+    <button ng-if="!si && aux2" class="btn btn-primary" ng-click="buscarCo(codigo)" class="boton" style=" float: right; " type="submit"> Buscar</button>
     <button ng-if="si" class="btn btn-success" ng-click="enviar(false)" class="boton" style=" float: right; " type="submit"> Entro</button>
     <button ng-if="si" class="btn btn-danger" ng-click="enviar(true)" class="boton" style=" float: right;margin-right: 5%"  type="submit"> Entro</button>
 
