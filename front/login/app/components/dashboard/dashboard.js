@@ -11,9 +11,12 @@ var SheetJSImportDirective = function() {
   };
 };
 
+
+
 angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModule'])
 
   .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+
 
 
 
@@ -43,6 +46,8 @@ angular.module('app.dashboard', ['ngRoute', 'checklist-model', 'LocalStorageModu
       $scope.auxerror = false
       $scope.si = false
       $scope.bloq = false
+      var myDate = new Date()
+      $scope.dia=(myDate.getMonth() + 1)  + "-" + myDate.getDate()+ "-" + myDate.getFullYear();
 
 
 

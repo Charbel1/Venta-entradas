@@ -275,9 +275,9 @@ def sendMail(data,random):
                           <table border="0" cellpadding="0" cellspacing="0">
                             <tr>
                               <td>
-                                <img src="https://goo.gl/images/S7Mgch" style="height:100px" alt="">
+                             <img src="https://i.ibb.co/X5ZhWC3/IMG-20181222-WA0009.jpg" style="height:200px; 	margin:10px auto; display:block; " alt="">
                             <p>Saludos  <b>"""+data["nombre"].upper()+"""  """+data["apellido"].upper()+"""</b>. </p>
-                            <p>Anexamos en este correo el número correspondiente a su registro en la base de datos de <b>WANGO</b>  </p>
+                            <p>Anexamos en este correo el número correspondiente a su entrada Digital de <b>Loyalty</b>  </p>
                             <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                               <tbody>
                                 <tr>
@@ -290,13 +290,9 @@ def sendMail(data,random):
                                 </tr>
                               </tbody>
                             </table>
-                            <p>Puedes realizar la compra de  tu entrada a través de un embajador autorizado
-                            o personalmente en nuestra oficina ubicada en la siguiente dirección:</p>
-                            <p>Av Andrés Bello entre Francisco de Miranda y transversal 1, Edificio plaza 1,
-                            Planta Baja,  salón Arena, Los Palos Grandes, Caracas.
-                             Contacto al momento de retirar la entrada 0212-7143333</p>
-                            <p>Horario de entregas: </p>
-                            <p>10:00 AM a 4:00 PM de Lunes a Jueves  y de 10:00 AM a 2:00 PM los dias Viernes </p>
+
+                            <p>Horario de entreda: </p>
+                            <p>10:00 PM a 2:00 AM de   Jueves a Sabado   </p>
                             <div class="h2">
                             <b> CON ESTE REGISTRO PARTICIPAS EN SORTEOS DE ENTRADAS DE CORTESIA Y OTROS PREMIOS ESPECIALES</b>
                             </div>
@@ -312,7 +308,7 @@ def sendMail(data,random):
                       <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
                           <td class="content-block">
-                            <span class="apple-link">Wango</span>
+                            <span class="apple-link">Loyalty</span>
                           </td>
                         </tr>
                         <tr>
@@ -334,11 +330,11 @@ def sendMail(data,random):
     """
 
     msg = email.message.Message()
-    msg['Subject'] = 'Registro Digital Wango'
+    msg['Subject'] = 'Registro Digital Loyalty'
 
-    msg['From'] = 'xparty.ventas@gmail.com'
+    msg['From'] = 'charbelnacharn@gmail.com'
     msg['To'] = data['correo']
-    password = "12505990"
+    password = "Arabe1993."
     msg.add_header('Content-Type', 'text/html')
     msg.set_payload(email_content)
 

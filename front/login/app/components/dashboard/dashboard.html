@@ -11,147 +11,164 @@
 <header>
 
 
-
-
 </header>
-<div style="margin-top: 10%;">
 
-  <div ng-if="aux == 'main'" style="width: 50%;" class="container">
-    <button type="button" style=" float: right; " csv-header="headersCsv" field-separator=";" ng-csv="getArray()" filename="{{getFecha()}}">Export</button>
-
-    <div class="input-group">
-      <span style="width: 20%; " class="input-group-addon">nombre</span>
-      <br>
-      <input type="text" class="form-control" ng-model="form.nombre" name="nombre" placeholder="Nombre">
-    </div>
-
-    <div class="input-group">
-      <span style="width: 20%; " class="input-group-addon">apellido</span>
-      <input id="email" type="text" class="form-control" ng-model="form.apellido" name="Apellido" placeholder="Apellido">
-    </div>
-
-    <div class="input-group">
-      <span style="width: 20%; " class="input-group-addon">cedula</span>
-      <input id="email" type="text" class="form-control" ng-model="form.cedula" name="Cedula" placeholder="Cedula">
-    </div>
+<div ng-if="aux == 'main'" style="width: 50%;" class="container">
 
 
-    <div class="input-group">
-      <span style="width: 20%; " class="input-group-addon">Correo</span>
-      <input id="email" type="text" class="form-control" ng-model="form.correo" name="email" placeholder="Correo">
-    </div>
+    <div class="row">
 
-    <div class="input-group">
-      <span style="width: 20%; " class="input-group-addon">Código Embajador</span>
-      <input id="email" type="text" class="form-control" ng-model="form.embajador" name="email" placeholder="Código Embajador">
-    </div>
 
-    <div class="input-group">
-      <span style="width: 20%; " class="input-group-addon">Número</span>
-      <input id="email" type="text" class="form-control" ng-model="form.numero" name="email" placeholder="Número">
-    </div>
+      <div class="col">
+        <datepicker date-format="dd-MM-yyyy" date-min-limit="{{dia}}" selector="form-control">
+          <div class="input-group">
+            <input class="form-control" placeholder="Escoger fecha" />
+            <span class="input-group-addon" style="cursor: pointer">
+            <i class="fa fa-lg fa-calendar"></i>
+            </span>
+          </div>
 
-    <div ng-if="auxerror" class="h3">
-      {{error}}
+        </datepicker>
+      </div>
+      <div class="col">
+        <button type="button" style=" float: right; " csv-header="headersCsv" field-separator=";" ng-csv="getArray()" filename="{{getFecha()}}">Export</button>
+      </div>
     </div>
 
 
-
-    <button class="btn btn-primary" ng-click="cambiar('reenviar')" class="boton" type="submit">Reenviar  Código </button>
-
-    <button  ng-disabled="bloq" class="btn btn-primary" ng-click="enviar()" class="boton" style=" float: right; " type="submit"> Generar  Código</button>
-
-    <button class="btn btn-primary" ng-click="reporte()" class="boton" style=" left:50%" type="submit"> Reporte</button>
-
-    <button class="btn btn-primary" ng-click="cambiar('buscar')" class="boton" style=" left:50%" type="submit"> Buscar</button>
-
-
-
+  <div class="input-group">
+    <span style="width: 20%; " class="input-group-addon">nombre</span>
+    <br>
+    <input type="text" class="form-control" ng-model="form.nombre" name="nombre" placeholder="Nombre">
   </div>
 
-  <div ng-if="aux == 'reenviar'" style="width: 50%;" class="container">
+  <div class="input-group">
+    <span style="width: 20%; " class="input-group-addon">apellido</span>
+    <input id="email" type="text" class="form-control" ng-model="form.apellido" name="Apellido" placeholder="Apellido">
+  </div>
 
+  <div class="input-group">
+    <span style="width: 20%; " class="input-group-addon">cedula</span>
+    <input id="email" type="text" class="form-control" ng-model="form.cedula" name="Cedula" placeholder="Cedula">
+  </div>
+
+
+  <div class="input-group">
+    <span style="width: 20%; " class="input-group-addon">Correo</span>
+    <input id="email" type="text" class="form-control" ng-model="form.correo" name="email" placeholder="Correo">
+  </div>
+
+  <div class="input-group">
+    <span style="width: 20%; " class="input-group-addon">Código Embajador</span>
+    <input id="email" type="text" class="form-control" ng-model="form.embajador" name="email" placeholder="Código Embajador">
+  </div>
+
+  <div class="input-group">
+    <span style="width: 20%; " class="input-group-addon">Número</span>
+    <input id="email" type="text" class="form-control" ng-model="form.numero" name="email" placeholder="Número">
+  </div>
+
+  <div ng-if="auxerror" class="h3">
+    {{error}}
+  </div>
+
+
+
+  <button class="btn btn-primary" ng-click="cambiar('reenviar')" class="boton" type="submit">Reenviar  Código </button>
+
+  <button ng-disabled="bloq" class="btn btn-primary" ng-click="enviar()" class="boton" style=" float: right; " type="submit"> Generar  Código</button>
+
+  <button class="btn btn-primary" ng-click="reporte()" class="boton" style=" left:50%" type="submit"> Reporte</button>
+
+  <button class="btn btn-primary" ng-click="cambiar('buscar')" class="boton" style=" left:50%" type="submit"> Buscar</button>
+
+
+
+</div>
+
+<div ng-if="aux == 'reenviar'" style="width: 50%;" class="container">
+
+  <div class="h5">
+    Reenviar Correo
+  </div>
+  <div class="input-group">
+    <input id="email" type="text" class="form-control" ng-model="vaina" name="email" placeholder="cedula">
+  </div>
+  <div ng-if="auxerror" class="h3">
+    {{error}}
+  </div>
+
+
+  <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
+
+  <button class="btn btn-primary" ng-click="renviarC(vaina)" class="boton" style=" float: right; " type="submit"> Enviar Correo</button>
+
+
+</div>
+
+<div ng-if="aux == 'buscar'" style="width: 50%;" class="container">
+  <div ng-show="aux2" class="">
     <div class="h5">
-      Reenviar Correo
+      Número Entrada
     </div>
     <div class="input-group">
-      <input id="email" type="text" class="form-control" ng-model="vaina" name="email" placeholder="cedula">
+      <input id="email" type="text" class="form-control" ng-model="entrada" placeholder="Entrada">
     </div>
-    <div ng-if="auxerror" class="h3">
-      {{error}}
+  </div>
+
+
+  <div ng-show="!aux2" class="">
+    <div class="h5">
+      Cedula
     </div>
+    <div class="input-group">
+      <input id="email" type="text" class="form-control" ng-model="cedula" name="email" placeholder="Cédula">
+    </div>
+  </div>
 
 
-    <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
+  <div ng-if="auxerror" class="h3">
+    {{error}}
+  </div>
 
-    <button class="btn btn-primary" ng-click="renviarC(vaina)" class="boton" style=" float: right; " type="submit"> Enviar Correo</button>
 
+
+  <div ng-if="si" class="h3">
+    <div class="container">
+
+      <div class="row justify-content-md-center">
+        <span>Nombre: {{data.nombre}}</span>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <span>Apellido: {{data.apellido}}</span>
+      </div>
+      <div class="row justify-content-md-center">
+        <span>Fecha: {{data.fecha}}</span>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <span>Codigo Embajador: {{data.embajador}}</span>
+      </div>
+      <div class="row justify-content-md-center">
+        <span>Vendida: {{data.entregado}}</span>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <span>Serial de Entrada: {{data.codigoe}}</span>
+      </div>
+
+
+    </div>
 
   </div>
 
-  <div ng-if="aux == 'buscar'" style="width: 50%;" class="container">
-    <div ng-show="aux2" class="">
-      <div class="h5">
-        Número Entrada
-      </div>
-      <div class="input-group">
-        <input id="email" type="text" class="form-control" ng-model="entrada"  placeholder="Entrada">
-      </div>
-    </div>
+  <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
 
+  <button ng-if="!aux2" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
+  <button ng-if="aux2" class="btn btn-primary" ng-click="aprobar(data.cedula , entrada)" class="boton" style=" float: right; " type="submit"> Vendida</button>
 
-    <div ng-show="!aux2" class="">
-      <div class="h5">
-        Cedula
-      </div>
-      <div class="input-group">
-        <input id="email" type="text" class="form-control" ng-model="cedula" name="email" placeholder="Cédula">
-      </div>
-    </div>
-
-
-    <div ng-if="auxerror" class="h3">
-      {{error}}
-    </div>
-
-
-
-    <div ng-if="si" class="h3">
-      <div class="container">
-
-        <div class="row justify-content-md-center">
-          <span>Nombre: {{data.nombre}}</span>
-        </div>
-
-        <div class="row justify-content-md-center">
-          <span>Apellido: {{data.apellido}}</span>
-        </div>
-        <div class="row justify-content-md-center">
-          <span>Fecha: {{data.fecha}}</span>
-        </div>
-
-        <div class="row justify-content-md-center">
-          <span>Codigo Embajador: {{data.embajador}}</span>
-        </div>
-        <div class="row justify-content-md-center">
-          <span>Vendida: {{data.entregado}}</span>
-        </div>
-
-        <div class="row justify-content-md-center">
-          <span>Serial de Entrada: {{data.codigoe}}</span>
-        </div>
-
-
-      </div>
-
-    </div>
-
-    <button class="btn btn-primary" ng-click="cambiar('main')" class="boton" type="submit"> Atras</button>
-
-    <button ng-if="!aux2" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
-    <button ng-if="aux2" class="btn btn-primary" ng-click="aprobar(data.cedula , entrada)" class="boton" style=" float: right; " type="submit"> Vendida</button>
-
-  </div>
+</div>
 
 
 </div>

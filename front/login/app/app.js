@@ -11,12 +11,13 @@ angular.module('app', [
     'app.dashboard',
     'app.entrada',
     'app.version',
+    '720kb.datepicker',
 
 
   ])
 
 
-  .constant('ip', 'http://192.168.1.103:5034')
+  .constant('ip', 'http://localhost:5034')
   .factory('request', ['$http', '$q','$rootScope', function($http, $q,$rootScope) {
     return {
       get: function(url) {
@@ -69,9 +70,9 @@ angular.module('app', [
   }])
 
 
-  .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  .config(['$locationProvider', '$routeProvider','$compileProvider', function($locationProvider, $routeProvider,$compileProvider) {
     $locationProvider.hashPrefix('!');
-
+ $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);
     $routeProvider.otherwise({
       redirectTo: '/dashboard'
     });
