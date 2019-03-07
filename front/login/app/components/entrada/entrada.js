@@ -28,6 +28,7 @@ angular.module('app.entrada', ['ngRoute', 'LocalStorageModule'])
       // }
       $scope.valor = "";
       $scope.cargar = false;
+      $scope.aux2 = false
       $scope.error = false;
 
       $scope.cambio = function(valor) {
@@ -118,7 +119,7 @@ angular.module('app.entrada', ['ngRoute', 'LocalStorageModule'])
               $scope.auxerror = true
               $scope.error = res.data.error
             } else {
-              $scope.aux2 = true
+              $scope.aux2 = false
               $scope.auxerror = false
               console.log(res.data.data)
               $scope.data = res.data.data
