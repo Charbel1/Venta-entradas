@@ -7,22 +7,22 @@
   <div style="width: 30%; margin-top: 10%" class="container center">
 
 
-          <div style="left:25%"  class="input-group">
-            <span class="">
+    <div style="left:25%" class="input-group">
+      <span class="">
             <div class="radio">
               <label>
                 <input  ng-click="cambio('cedula')" checked type="radio" name="radio"> Cédula
               </label>
             </div>
           </span>
-            <span style="padding-left: 10px;" class="">
+      <span style="padding-left: 10px;" class="">
             <div class="radio">
               <label>
                 <input  ng-click="cambio('codigo')" type="radio" name="radio"> Código
               </label>
             </div>
           </span>
-          </div>
+    </div>
     <div ng-show="aux2" class="">
 
       <div class="input-group">
@@ -35,7 +35,7 @@
 
 
       <div class="input-group">
-        <input ng-keypress="enter($event)" type="text" class="form-control" ng-model="cedula"  placeholder="Cédula">
+        <input ng-keypress="enter($event)" type="text" class="form-control" ng-model="cedula" placeholder="Cédula">
       </div>
     </div>
 
@@ -85,7 +85,7 @@
     <button ng-if="!si && !aux2" class="btn btn-primary" ng-click="buscar(cedula)" class="boton" style=" float: right; " type="submit"> Buscar</button>
     <button ng-if="!si && aux2" class="btn btn-primary" ng-click="buscarCo(codigo)" class="boton" style=" float: right; " type="submit"> Buscar</button>
     <button ng-if="si" class="btn btn-success" ng-click="enviar(false)" class="boton" style=" float: right; " type="submit"> Entro</button>
-    <button ng-if="si" class="btn btn-danger" ng-click="enviar(true)" class="boton" style=" float: right;margin-right: 5%"  type="submit"> Entro</button>
+    <button ng-if="si" class="btn btn-danger" ng-click="enviar(true)" class="boton" style=" float: right;margin-right: 5%" type="submit"> Entro</button>
 
   </div>
 

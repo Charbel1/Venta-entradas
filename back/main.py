@@ -685,7 +685,7 @@ async def get_by_id(request):
     else:
         return response.json({"data":"", "error": "No registrado"})
 
-
+# cambie aqui fecha entregado por entro
 @app.route('/wango/reporte',methods=['POST','OPTIONS'])
 @cross_origin(app, automatic_options=True)
 async def get_by_id(request):
@@ -696,7 +696,7 @@ async def get_by_id(request):
     conn = con()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entregado"
+        cursor.execute("SELECT nombre, apellido, cedula, codigo, correo, fecha,entro"
                        "  FROM cliente ")
         data = cursor.fetchall()
         for row in data:

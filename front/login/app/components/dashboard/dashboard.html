@@ -15,11 +15,11 @@
 
 <div ng-if="aux == 'main'" style="width: 50%;" class="container">
 
-
+  <br><br>  <br><br>
     <div class="row">
 
 
-      <div class="col">
+      <!-- <div class="col">
         <datepicker date-format="dd-MM-yyyy" date-min-limit="{{dia}}" selector="form-control">
           <div class="input-group">
             <input class="form-control" placeholder="Escoger fecha" />
@@ -30,6 +30,8 @@
 
         </datepicker>
       </div>
+       -->
+
       <div class="col">
         <button type="button" style=" float: right; " csv-header="headersCsv" field-separator=";" ng-csv="getArray()" filename="{{getFecha()}}">Export</button>
       </div>
@@ -107,6 +109,7 @@
 </div>
 
 <div ng-if="aux == 'buscar'" style="width: 50%;" class="container">
+
   <div ng-show="aux2" class="">
     <div class="h5">
       Número Entrada
